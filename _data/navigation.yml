@@ -2,8 +2,8 @@
 main:
   - title: "About"
     url: /about/
-  - title: "Deep Learning"
-    url: /deep-learning/
+  - title: "Posts"
+    url: /posts/
   - title: "Tags"
     url: /tags/
   # - title: "About"

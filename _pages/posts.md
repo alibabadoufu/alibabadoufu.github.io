@@ -1,6 +1,6 @@
 ---
 layout: posts
-permalink: /all-posts/
+permalink: /posts/
 title: "Posts"
 comments: false
 ---
