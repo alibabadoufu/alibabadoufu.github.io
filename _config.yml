@@ -64,7 +64,7 @@ reCaptcha:
   secret                 :
 atom_feed:
   path                   : # blank (default) uses feed.xml
-search                   : # true, false (default)
+search                   : true
 search_full_content      : # true, false (default)
 search_provider          : # lunr (default), algolia, google
 algolia:
@@ -127,9 +127,9 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/alibabadoufu"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+    - label: "Photography"
+      icon: "fab fa-fw fa-Camera"
+      url: "https://gurushots.com/doufulai/photos"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://sg.linkedin.com/in/woenyon"

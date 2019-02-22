@@ -8,8 +8,6 @@ comments: true
 toc: true
 ---
 
-# H1 Heading
-
 ## H2 Heading
 
 What is the problem with this?
