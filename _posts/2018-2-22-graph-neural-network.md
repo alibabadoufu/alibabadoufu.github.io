@@ -3,7 +3,6 @@ title: "Machine Learning Project: Perceptron"
 date: 2018-01-28
 tags: [machine learning, data science, neural network]
 excerpt: "Machine Learning, Perceptron, Data Science"
-mathjax: "true"
 ---
 
 # H1 Heading
