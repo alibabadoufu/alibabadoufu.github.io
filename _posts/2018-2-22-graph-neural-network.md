@@ -5,6 +5,7 @@ date: 2018-01-28
 tags: [machine learning, data science, neural network]
 excerpt: "Machine Learning, Perceptron, Data Science"
 comments: true
+toc: true
 ---
 
 # H1 Heading
