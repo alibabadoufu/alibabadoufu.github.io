@@ -75,6 +75,7 @@ algolia:
 google:
   search_engine_id       : # YOUR_SEARCH_ENGINE_ID
   instant_search         : # false (default), true
+
 # SEO Related
 google_site_verification :
 bing_site_verification   :
@@ -128,7 +129,7 @@ author:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/alibabadoufu"
     - label: "Photography"
-      icon: "fab fa-fw fa-Camera"
+      icon: "fas fa-fw fa-camera-retro"
       url: "https://gurushots.com/doufulai/photos"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
