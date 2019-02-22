@@ -1,8 +1,9 @@
 ---
-title: "Machine Learning Project: Perceptron"
+title: "Graph Neural Network"
 date: 2018-01-28
 tags: [machine learning, data science, neural network]
 excerpt: "Machine Learning, Perceptron, Data Science"
+comments: true
 ---
 
 # H1 Heading
