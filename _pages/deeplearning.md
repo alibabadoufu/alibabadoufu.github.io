@@ -1,6 +1,6 @@
 ---
 layout: posts
-permalink: /deep-learning/
-title: "Deep Learning Posts by Tags"
+permalink: /all-posts/
+title: "Posts"
 comments: false
 ---
