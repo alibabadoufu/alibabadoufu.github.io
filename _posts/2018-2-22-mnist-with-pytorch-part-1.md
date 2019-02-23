@@ -37,7 +37,7 @@ To build the model, we need the tools. We first import the libraries which are n
 import torch
 from torch import nn # Sets of preset layers
 import torch.nn.functional as F # Sets of functions such as ReLU
-from torchvision import database, transforms # Popular datasets, architectures and common image transformations for computer vision
+from torchvision import datasets, transforms # Popular datasets, architectures and common image transformations for computer vision
 ```
 
 ### Transfrom Dataset
@@ -54,7 +54,7 @@ tranform = tranforms.Compose([transforms.ToTensor(),
                               transforms.Normalize((0.5,0.5,0.5),(0.5,0.5,0.5))])
 ```
 
-### Download Dataset
+### Download Training Dataset
 To download the dataset, we use torchvision dataset library.
 
 ```python
@@ -71,8 +71,57 @@ Normally, when we load data from the dataset, we will naively use <code>forloop<
 
 Therefore, we use <code>dataloader</code> to solve the abovementioned issues.
 
+```python
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=64, shuffle=True)
+```
 
+### Build a simple feed-forward network
+There are different ways to build model using PyTorch. One is to define a  <code>class</code> and the other is to use <code>nn.Sequential</code>. Both ways should lead to the same result. However, defining a class could give you more flexibility as custom functions can be introduced in the <code>forward</code> function.
 
+Model are usually defined by subclassing <code>torch.nn.Module</code> and operations are defined by using <code>torch.nn.functional</code>. We first specify the model's parameters and then specify how they are applied to the inputs. <code>torch.nn.functional</code> usually deals with operations without trainable parameters.
+
+In the following example, we will show two different approaches. You can whichever way you like to build your model.
+
+<strong>Model defined using nn.Sequential</strong>
+```python
+model = nn.Sequential(nn.Linear(784, 128),
+                      nn.ReLU(),
+                      nn.Linear(128,64),
+                      nn.ReLU(),
+                      nn.Linear(64,10))
+
+# Define the loss
+criterion = nn.CrossEntropyLoss()
+
+# Get data in a batch of 64 images and their corresponding labels
+images, labels = next(iter(trainloader))
+
+# Flatten every images to a single column
+images = images.view(images.shape[0],-1)
+
+# Get the prediction for each images
+logits = model(images)
+
+# Calculate the loss
+loss = criterion(logits, labels)
+
+```
+<strong>Model defined using class</strong>
+```python
+class SimpleNetwork(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+        self.hidden_1 = nn.Linear(784,128)
+        self.hidden_2 = nn.Linear(128,64)
+        self.output = nn.Linear(64,10)
+
+    def forward(self,x):
+        x = F.relu(self.hidden_1(x))
+        x = F.relu(self.hidden_2(x))
+        x = F.softmax(self.output(x), dim=1)
+
+```
 
 
 
