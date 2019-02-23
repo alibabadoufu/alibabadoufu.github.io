@@ -8,7 +8,7 @@ comments: true
 toc: true
 ---
 
-I am doing a revision on how to build neural network with PyTorch. To do so I am taking Udacity's online lesson on [Intro to Deep Learning with PyTorch] (https://www.udacity.com/course/deep-learning-pytorch--ud188). This course introduces many important models such as CNN and RNN using PyTorch. In the subsequent posts, I will try to summarize important points that I have learnt in the course.
+I am doing a revision on how to build neural network with PyTorch. To do so I am taking Udacity's online lesson on [Intro to Deep Learning with PyTorch](https://www.udacity.com/course/deep-learning-pytorch--ud188). This course introduces many important models such as CNN and RNN using PyTorch. In the subsequent posts, I will try to summarize important points that I have learnt in the course.
 
 ## Prerequisite
 For those who have learnt fundamental deep learning concepts should not find any difficulties to follow. However, if you are a fresh new beginner in this field, I would strongly encourage you to go through Andrew Ng's Deep Learning Specialization on Coursera before reading this entire post series.
