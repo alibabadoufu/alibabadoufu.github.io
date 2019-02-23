@@ -32,10 +32,10 @@ In this section, we will discuss about the basic workflow of classifying image u
 To build the model, we need the tools. We first import the libraries which are needed for our model.
 
 ```python
-    import torch
-    from torch import nn # Sets of preset layers
-    import torch.nn.functional as F # Sets of functions such as ReLU
-    from torchvision import database, transforms # Popular datasets, architectures and common image transformations for computer vision
+import torch
+from torch import nn # Sets of preset layers
+import torch.nn.functional as F # Sets of functions such as ReLU
+from torchvision import database, transforms # Popular datasets, architectures and common image transformations for computer vision
 ```
 
 ### Transfrom Dataset
@@ -48,15 +48,15 @@ As in the example below, we passed 0.5 to both parameters mean and std so that t
 Neural network learns how to predict the data by updating its parameters. During training, some features with larger numerical values tend to be assigned with larger parameters. By doing so, we miss the opportunity to learn from other features that could have significant impact on the prediction. Therefore, we need normalization to set every features at the same "starting line" and let the network to decide which feature is important.
 
 ```python
-    tranform = tranforms.Compose([transforms.ToTensor(),
-                                  transforms.Normalize((0.5,0.5,0.5),(0.5,0.5,0.5))])
+tranform = tranforms.Compose([transforms.ToTensor(),
+                              transforms.Normalize((0.5,0.5,0.5),(0.5,0.5,0.5))])
 ```
 
 ### Download Dataset
 To download the dataset, we use torchvision dataset library.
 
 ```python
-    trainset = datasets.MNIST('~/MNIST_data/', download=True, train=True, transform=transform)
+trainset = datasets.MNIST('~/MNIST_data/', download=True, train=True, transform=transform)
 ```
 
 ### Load Dataset
