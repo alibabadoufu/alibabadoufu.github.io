@@ -6,6 +6,7 @@ tags: [deep learning, pytorch, neural network]
 excerpt: "Deep Learning, Programming, Pytorch"
 comments: true
 toc: true
+author_profile: false
 header:
   image: "https://cdn-images-1.medium.com/max/2600/1*aqNgmfyBIStLrf9k7d9cng.jpeg"
 ---
@@ -132,7 +133,7 @@ logits = model(images)
 loss = criterion(logits, labels)
 ```
 
-Here we split the steps into four different section for clarity:
+Here we split the steps into four different sections for clarity:
 1. Load images and define loss function
     - Here we need to load the images and their corresponding labels so that we can put them through the model and evaluate the result. Loss function requires two input: prediction and true labels.
 2. nn.Sequential and class implementations
@@ -141,5 +142,20 @@ Here we split the steps into four different section for clarity:
     - We pass the images to the model and we receive the predictions. After that, we compare the predicted output with the true label.
 
 It is important to understand the loss function here. We use <code>CrossEntropyLoss</code> in our model. It is a loss that combines both <code>LogSoftMax</code> and <code>NLLLoss</code> (Negative Log Likelihood) in one single class.
-{% include figure image_path="/images/mnist_with_pytorch/neg_log_demo.jpg" alt="Visualization of Cross Entropy Loss" caption="Visualization of Cross Entropy Loss. To check out the actual formula, visit [here](https://pytorch.org/docs/stable/nn.html#crossentropyloss) (Source: https://ljvmiranda921.github.io/notebook/2017/08/13/softmax-and-the-negative-log-likelihood/#nll)" %}
+{% include figure image_path="/images/mnist_with_pytorch/neg_log_demo.jpg" alt="Visualization of Cross Entropy Loss" caption="Visualization of Cross Entropy Loss. To check out the actual formula, visit [here](https://pytorch.org/docs/stable/nn.html#crossentropyloss) [Source]{https://ljvmiranda921.github.io/notebook/2017/08/13/softmax-and-the-negative-log-likelihood/#nll)}" %}
 The loss function assigns low value to model when the correct label is assigned with higher confidence. If the model classifies incorrectly, higher penalty will be imposed.
+
+### Backpropagation
+To perform backpropagation, we need to use a Torch module <code>autograd</code> for automatically calculating the gradients of tensors. By using this module, we can calculate the gradients of our parameters w.r.t. loss.
+
+We can also turn off gradients for a block of code with <code>torch.no_grad()</code> content:
+[
+```python
+# x requires gradient calculation
+x = torch.zeros(10,10, requires_grad=True)
+
+# y does not require gradient calculation
+with torch.no_grad():
+    y = x * 2
+```
+]{: .notice--info}
