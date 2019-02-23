@@ -16,10 +16,29 @@ For those who have learnt fundamental deep learning concepts should not find any
 ## What is MNIST Dataset?
 MNIST consists of greyscale handwritten digits ranging from 0 to 9. Each image is 28 x 28 pixels.
 
-<figure>
-<a href="https://corochann.com/wp-content/uploads/2017/02/mnist_plot.png"><img src="https://corochann.com/wp-content/uploads/2017/02/mnist_plot.png"></a>
-<figcaption>MNIST</figcaption>
-</figure>
+{% include figure image_path="https://corochann.com/wp-content/uploads/2017/02/mnist_plot.png" alt="This is MNIST Data" caption="MNIST" %}
+
+## PyTorch
+As its name implies, PyTorch is a Python-based scientific computing package. It allows developers to compute high-dimensional data using tensor with strong GPU acceleration support. One of the advantages over Tensorflow is PyTorch avoids static graphs. This allows developers to change the network behavior on the fly. I was reluctant to use PyTorch when I first started learning deep learning is because of it poor production support. However, recent release of PyTorch 1.0 has overcome the challenges. The merge between PyTorch and Caffe2 allows researchers to move seemlessly from research to production without worries about migration issue.
+
+Overall speaking, it's always good to learn both Tensorflow and PyTorch as these two frameworks are designed by the two giant companies which focus heavily on Deep Learning development. There is no reason to choose either side especially for someone who wishes to make their models reachable to the community.
+
+## Talking about the basic workflow
+To build the model, we need the tools. We first import the libraries which are needed for our model.
+
+```python
+    import torch
+    from torch import nn # Sets of preset layers
+    import torch.nn.functional as F # Sets of functions such as ReLU
+    from torchvision import database, transforms # Popular datasets, architectures and common image transformations
+```
+
+
+
+
+
+
+
 
 ### H3 Heading
 
