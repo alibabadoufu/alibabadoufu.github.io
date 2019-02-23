@@ -82,31 +82,28 @@ Model are usually defined by subclassing <code>torch.nn.Module</code> and operat
 
 In the following example, we will show two different approaches. You can whichever way you like to build your model.
 
-<strong>Model defined using nn.Sequential</strong>
+<strong>Load images and define loss function</strong>
 ```python
-model = nn.Sequential(nn.Linear(784, 128),
-                      nn.ReLU(),
-                      nn.Linear(128,64),
-                      nn.ReLU(),
-                      nn.Linear(64,10))
-
-# Define the loss
-criterion = nn.CrossEntropyLoss()
-
 # Get data in a batch of 64 images and their corresponding labels
 images, labels = next(iter(trainloader))
 
 # Flatten every images to a single column
 images = images.view(images.shape[0],-1)
 
-# Get the prediction for each images
-logits = model(images)
-
-# Calculate the loss
-loss = criterion(logits, labels)
-
+# Define the loss
+criterion = nn.CrossEntropyLoss()
 ```
-<strong>Model defined using class</strong>
+
+<strong>[Option 1] Model defined using nn.Sequential</strong>
+```python
+model = nn.Sequential(nn.Linear(784, 128),
+                      nn.ReLU(),
+                      nn.Linear(128,64),
+                      nn.ReLU(),
+                      nn.Linear(64,10))
+```
+
+<strong>[Option 2] Model defined using class</strong>
 ```python
 class SimpleNetwork(nn.Module):
     def __init__(self):
@@ -119,42 +116,18 @@ class SimpleNetwork(nn.Module):
     def forward(self,x):
         x = F.relu(self.hidden_1(x))
         x = F.relu(self.hidden_2(x))
-        x = F.softmax(self.output(x), dim=1)
+        y_pred = self.output(x)
+        return y_pred
 
+# Initialize the network
+model = SimpleNetwork();
 ```
 
-
-
-
-
-
-
-
-
-### H3 Heading
-
-Here's some basic text.
-
-And here's some *italics*
-
-Here's some **bold** text.
-
-What about a [link](https://google.com)
-
-Here's a bulleted list:
-* First itemprop
-+ Second item
-- Third item
-
-Here's a numbered list:
-1. first
-2. second
-3. Third
-
-Python code block:
+<strong>Predict labels and calculate loss</strong>
 ```python
-    import numpy as np
+# Get the prediction for each images
+logits = model(images)
 
-    def text_function (x,y):
-      return np.sum(x,y)
+# Calculate the loss
+loss = criterion(logits, labels)
 ```
