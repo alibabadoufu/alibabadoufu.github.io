@@ -1,16 +1,19 @@
 ---
 layout: single
-title: "Graph Neural Network"
+title: "MNIST Classifier with Pytorch"
 date: 2018-01-28
-tags: [machine learning, data science, neural network]
-excerpt: "Machine Learning, Perceptron, Data Science"
+tags: [machine learning, pytorch, neural network]
+excerpt: "Machine Learning, Programming, Pytorch"
 comments: true
 toc: true
 ---
 
-## H2 Heading
+## MNIST Dataset
 
-What is the problem with this?
+MNIST consists of greyscale handwritten digits ranging from 0 to 9. Each image is 28 x 28 pixels.
+
+<a href="https://corochann.com/wp-content/uploads/2017/02/mnist_plot.png"><img src="https://corochann.com/wp-content/uploads/2017/02/mnist_plot.png"></a>
+<figcaption>MNIST</figcaption>
 
 ### H3 Heading
 
