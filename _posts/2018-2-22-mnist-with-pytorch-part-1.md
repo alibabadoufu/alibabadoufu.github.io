@@ -148,7 +148,7 @@ The loss function assigns low value to model when the correct label is assigned 
 ### Backpropagation
 To perform backpropagation, we need to use a Torch module <code>autograd</code> for automatically calculating the gradients of tensors. By using this module, we can calculate the gradients of our parameters w.r.t. loss.
 
-<div class=".notice .notice--info">
+<div class="notice notice--info">
 We can also turn off gradients for a block of code with <code>torch.no_grad()</code> content:
 ```python
 # x requires gradient calculation
