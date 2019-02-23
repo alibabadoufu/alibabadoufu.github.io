@@ -141,5 +141,6 @@ Here we split the steps into four different section for clarity:
     - We pass the images to the model and we receive the predictions. After that, we compare the predicted output with the true label.
 
 It is important to understand the loss function here. We use <code>CrossEntropyLoss</code> in our model. It is a loss that combines both <code>LogSoftMax</code> and <code>NLLLoss</code> (Negative Log Likelihood) in one single class.
-{% include figure image_path="/images/mnist_with_pytorch/neg_log_demo.png" alt="Visualization of Cross Entropy Loss" caption="(Source: https://ljvmiranda921.github.io/notebook/2017/08/13/softmax-and-the-negative-log-likelihood/#nll) \nVisualization of Cross Entropy Loss. To check out the actual formula, visit [here](https://pytorch.org/docs/stable/nn.html#crossentropyloss)" %}
+{% include figure image_path="/images/mnist_with_pytorch/neg_log_demo.jpg" alt="Visualization of Cross Entropy Loss" caption="(Source: https://ljvmiranda921.github.io/notebook/2017/08/13/softmax-and-the-negative-log-likelihood/#nll)
+Visualization of Cross Entropy Loss. To check out the actual formula, visit [here](https://pytorch.org/docs/stable/nn.html#crossentropyloss)" %}
 The loss function assigns low value to model when the correct label is assigned with higher confidence. If the model classifies incorrectly, higher penalty will be imposed.
