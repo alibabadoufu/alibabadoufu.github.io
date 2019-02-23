@@ -148,6 +148,8 @@ The loss function assigns low value to model when the correct label is assigned 
 To perform backpropagation, we need to use a Torch module <code>autograd</code> for automatically calculating the gradients of tensors. By using this module, we can calculate the gradient of the loss w.r.t. our parameters.
 
 We can also turn off gradients for a block of code with <code>torch.no_grad()</code> content:
+{: .notice--info}
+
 ```python
 # x requires gradient calculation
 x = torch.zeros(10,10, requires_grad=True)
@@ -156,7 +158,6 @@ x = torch.zeros(10,10, requires_grad=True)
 with torch.no_grad():
     y = x * 2
 ```
-{: .notice--info}
 
 When we do backpropagation, what's happening is we are trying to optimize the model by locating the weights that result in the lowest possible loss. So we need to do a backward pass starting from the loss to find the gradients.
 
@@ -165,6 +166,7 @@ loss.backward()
 ```
 
 **Optimizer**
+
 To update the weights with the gradients, we will need an optimizer. PyTorch provides an <code>optim</code> package to provide various optimization gradients. For example, we can use stochastic gradient descent with <code>optim.SGD</code>
 
 ```python
