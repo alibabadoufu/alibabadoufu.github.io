@@ -6,7 +6,6 @@ tags: [deep learning, pytorch, neural network]
 excerpt: "Deep Learning, Programming, Pytorch"
 comments: true
 toc: true
-author_profile: false
 header:
   image: "https://cdn-images-1.medium.com/max/2600/1*aqNgmfyBIStLrf9k7d9cng.jpeg"
 ---
@@ -36,7 +35,7 @@ To build the model, we need the tools. We first import the libraries which are n
 
 ```python
 import torch
-from torch import nn # Sets of preset layers
+from torch import nn, optim # Sets of preset layers and optimizers
 import torch.nn.functional as F # Sets of functions such as ReLU
 from torchvision import datasets, transforms # Popular datasets, architectures and common image transformations for computer vision
 ```
@@ -83,7 +82,7 @@ Model are usually defined by subclassing <code>torch.nn.Module</code> and operat
 
 In the following example, we will show two different approaches. You can whichever way you like to build your model.
 
-<strong>Load images and define loss function</strong>
+**Load images and define loss function**
 ```python
 # Get data in a batch of 64 images and their corresponding labels
 images, labels = next(iter(trainloader))
@@ -95,7 +94,7 @@ images = images.view(images.shape[0],-1)
 criterion = nn.CrossEntropyLoss()
 ```
 
-<strong>[Option 1] Model defined using nn.Sequential</strong>
+**[Option 1] Model defined using nn.Sequential**
 ```python
 model = nn.Sequential(nn.Linear(784, 128),
                       nn.ReLU(),
@@ -104,7 +103,7 @@ model = nn.Sequential(nn.Linear(784, 128),
                       nn.Linear(64,10))
 ```
 
-<strong>[Option 2] Model defined using class</strong>
+**[Option 2] Model defined using class**
 ```python
 class SimpleNetwork(nn.Module):
     def __init__(self):
@@ -124,7 +123,7 @@ class SimpleNetwork(nn.Module):
 model = SimpleNetwork();
 ```
 
-<strong>Predict labels and calculate loss</strong>
+**Predict labels and calculate loss**
 ```python
 # Get the prediction for each images
 logits = model(images)
@@ -146,10 +145,10 @@ It is important to understand the loss function here. We use <code>CrossEntropyL
 The loss function assigns low value to model when the correct label is assigned with higher confidence. If the model classifies incorrectly, higher penalty will be imposed.
 
 ### Backpropagation
-To perform backpropagation, we need to use a Torch module <code>autograd</code> for automatically calculating the gradients of tensors. By using this module, we can calculate the gradients of our parameters w.r.t. loss.
+To perform backpropagation, we need to use a Torch module <code>autograd</code> for automatically calculating the gradients of tensors. By using this module, we can calculate the gradient of the loss w.r.t. our parameters.
 
-<div class="notice notice--info">
-We can also turn off gradients for a block of code with <code>torch.no_grad()</code> content:
+[We can also turn off gradients for a block of code with <code>torch.no_grad()</code> content:]{: .notice--info}
+
 ```python
 # x requires gradient calculation
 x = torch.zeros(10,10, requires_grad=True)
@@ -158,4 +157,17 @@ x = torch.zeros(10,10, requires_grad=True)
 with torch.no_grad():
     y = x * 2
 ```
-</div>
+
+When we do backpropagation, what's happening is we are trying to optimize the model by locating the weights that result in the lowest possible loss. So we need to do a backward pass starting from the loss to find the gradients.
+
+```python
+loss.backward()
+```
+
+**Optimizer**
+To update the weights with the gradients, we will need an optimizer. PyTorch provides an <code>optim</code> package to provide various optimization gradients. For example, we can use stochastic gradient descent with <code>optim.SGD</code>
+
+```python
+# Optimizers require parameters to optimize and a learning rate
+optimizer = optim.SGD(model.parameters(), lr=0.01)
+```
