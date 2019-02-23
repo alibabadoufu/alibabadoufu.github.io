@@ -131,3 +131,15 @@ logits = model(images)
 # Calculate the loss
 loss = criterion(logits, labels)
 ```
+
+Here we split the steps into four different section for clarity:
+1. Load images and define loss function
+    - Here we need to load the images and their corresponding labels so that we can put them through the model and evaluate the result. Loss function requires two input: prediction and true labels.
+2. nn.Sequential and class implementations
+    - As mentioned before, although their implementations are different, but both ways should lead to the same result.
+3. Predict labels and calculate loss
+    - We pass the images to the model and we receive the predictions. After that, we compare the predicted output with the true label.
+
+It is important to understand the loss function here. We use <code>CrossEntropyLoss</code> in our model. It is a loss that combines both <code>LogSoftMax</code> and <code>NLLLoss</code> (Negative Log Likelihood) in one single class.
+{% include figure image_path="https://ljvmiranda921.github.io/assets/png/cs231n-ann/neg_log_demo.png" alt="Visualization of Cross Entropy Loss" caption="(Source: https://ljvmiranda921.github.io/notebook/2017/08/13/softmax-and-the-negative-log-likelihood/#nll) Visualization of Cross Entropy Loss. To check out the actual formula, visit [here](https://pytorch.org/docs/stable/nn.html#crossentropyloss)" %}
+The loss function assigns low value when the correct label is assigned with higher confidence value. If the model classifies incorrectly, higher penalty will be imposed.
