@@ -141,13 +141,13 @@ Here we split the steps into four different sections for clarity:
     - We pass the images to the model and we receive the predictions. After that, we compare the predicted output with the true label.
 
 It is important to understand the loss function here. We use <code>CrossEntropyLoss</code> in our model. It is a loss that combines both <code>LogSoftMax</code> and <code>NLLLoss</code> (Negative Log Likelihood) in one single class.
-{% include figure image_path="/images/mnist_with_pytorch/neg_log_demo.jpg" alt="Visualization of Cross Entropy Loss" caption="Visualization of Cross Entropy Loss. To check out the actual formula, visit [here](https://pytorch.org/docs/stable/nn.html#crossentropyloss) [Source]{https://ljvmiranda921.github.io/notebook/2017/08/13/softmax-and-the-negative-log-likelihood/#nll)}" %}
+{% include figure image_path="/images/mnist_with_pytorch/neg_log_demo.jpg" alt="Visualization of Cross Entropy Loss" caption="Visualization of Cross Entropy Loss. To check out the actual formula, visit [here](https://pytorch.org/docs/stable/nn.html#crossentropyloss) [Source: https://ljvmiranda921.github.io/notebook/2017/08/13/softmax-and-the-negative-log-likelihood/#nll] }" %}
 The loss function assigns low value to model when the correct label is assigned with higher confidence. If the model classifies incorrectly, higher penalty will be imposed.
 
 ### Backpropagation
 To perform backpropagation, we need to use a Torch module <code>autograd</code> for automatically calculating the gradients of tensors. By using this module, we can calculate the gradient of the loss w.r.t. our parameters.
 
-[We can also turn off gradients for a block of code with <code>torch.no_grad()</code> content:](){: .notice--info}
+[We can also turn off gradients for a block of code with <code>torch.no_grad()</code> content:] {: .notice--info}
 
 ```python
 # x requires gradient calculation
