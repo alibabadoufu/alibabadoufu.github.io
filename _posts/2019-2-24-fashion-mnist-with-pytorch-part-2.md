@@ -5,7 +5,6 @@ date: 2019-2-24
 tags: [deep learning, pytorch, neural network]
 excerpt: "Deep Learning, Programming, Pytorch"
 comments: true
-breadcrumbs: true
 toc: true
 excerpt: "“I visualize a time when we will be to robots what dogs are to humans, and I’m rooting for the machines.” —Claude Shannon"
 header:
