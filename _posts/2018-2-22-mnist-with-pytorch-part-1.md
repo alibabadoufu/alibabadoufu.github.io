@@ -167,9 +167,16 @@ loss.backward()
 
 **Optimizer**
 
-To update the weights with the gradients, we will need an optimizer. PyTorch provides an <code>optim</code> package to provide various optimization gradients. For example, we can use stochastic gradient descent with <code>optim.SGD</code>
+To update the weights with the gradients, we will need an optimizer. PyTorch provides an <code>optim</code> package to provide various optimization gradients. For example, we can use [Stochastic Gradient Descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) with <code>optim.SGD</code>.
 
 ```python
 # Optimizers require parameters to optimize and a learning rate
 optimizer = optim.SGD(model.parameters(), lr=0.01)
 ```
+
+To recap, the general process with PyTorch:
+- Make forward pass through the network
+- Calculate loss with the network output
+- Calculate gradients by using <code>loss.backward()</code> to perform backpropagation
+- Update weights using optimizer
+{: .notice--info}
