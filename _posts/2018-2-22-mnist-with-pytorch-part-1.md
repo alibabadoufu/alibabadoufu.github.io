@@ -181,4 +181,27 @@ To recap, the general process with PyTorch:
   - Update weights using optimizer
 {: .notice--info}
 
-this
+**Important**
+
+It's important to note that before we can update our weights, we need to use <code>optimizer.zero_grad()</code> to zero the gradients on each training pass. This is because in PyTorch the gradients are accumulated from previous training batches.
+
+**Overall Workflow Recap (for only one training step)**
+```python
+# Extract images
+images, labels = next(iter(trainloader))
+
+# Clear gradients
+optimizer.zero_grad()
+
+# Forward pass
+output = model.forward(images)
+
+# Calculate loss
+loss = criterion(output, labels)
+
+# Backward pass
+loss.backward()
+
+# Optimize weights
+optimizer.step()
+```
