@@ -7,5 +7,5 @@ excerpt: "Deep Learning, Programming, Pytorch"
 comments: true
 toc: true
 header:
-  image: /images/fashion_mnist_with_pytorch/fashion-mnist.png
+  image: "/images/fashion_mnist_with_pytorch/fashion-mnist.png"
 ---
