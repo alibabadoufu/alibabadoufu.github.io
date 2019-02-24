@@ -1,6 +1,7 @@
 ---
 title: "About"
 permalink: /about/
+breadcrumbs: false
 header:
   image: "/images/about.jpg"
 ---

@@ -5,6 +5,7 @@ date: 2019-2-22
 tags: [deep learning, pytorch, neural network]
 excerpt: "Deep Learning, Programming, Pytorch"
 comments: true
+breadcrumbs: true
 toc: true
 header:
   teaser: "https://cdn-images-1.medium.com/max/2600/1*aqNgmfyBIStLrf9k7d9cng.jpeg"
