@@ -175,10 +175,10 @@ optimizer = optim.SGD(model.parameters(), lr=0.01)
 ```
 
 To recap, the general process with PyTorch:
-    * Make forward pass through the network
-    * Calculate loss with the network output
-    * Calculate gradients by using <code>loss.backward()</code> to perform backpropagation
-    * Update weights using optimizer
+    + Make forward pass through the network
+    + Calculate loss with the network output
+    + Calculate gradients by using <code>loss.backward()</code> to perform backpropagation
+    + Update weights using optimizer
 {: .notice--info}
 
 **Important**
