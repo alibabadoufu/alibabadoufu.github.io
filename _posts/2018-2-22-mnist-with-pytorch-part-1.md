@@ -141,7 +141,7 @@ Here we split the steps into four different sections for clarity:
     - We pass the images to the model and we receive the predictions. After that, we compare the predicted output with the true label.
 
 It is important to understand the loss function here. We use <code>CrossEntropyLoss</code> in our model. It is a loss that combines both <code>LogSoftMax</code> and <code>NLLLoss</code> (Negative Log Likelihood) in one single class.
-{% include figure image_path="/images/mnist_with_pytorch/neg_log_demo.jpg" alt="Visualization of Cross Entropy Loss" caption="Visualization of Cross Entropy Loss. To check out the actual formula, visit [here](https://pytorch.org/docs/stable/nn.html#crossentropyloss) [Source: https://ljvmiranda921.github.io/notebook/2017/08/13/softmax-and-the-negative-log-likelihood/#nll] }" %}
+{% include figure image_path="/images/mnist_with_pytorch/neg_log_demo.jpg" alt="Visualization of Cross Entropy Loss" caption="Visualization of Cross Entropy Loss. To check out the actual formula, visit [here](https://pytorch.org/docs/stable/nn.html#crossentropyloss) ([Source](https://ljvmiranda921.github.io/notebook/2017/08/13/softmax-and-the-negative-log-likelihood/#nll))" %}
 The loss function assigns low value to model when the correct label is assigned with higher confidence. If the model classifies incorrectly, higher penalty will be imposed.
 
 ### Backpropagation
@@ -175,10 +175,10 @@ optimizer = optim.SGD(model.parameters(), lr=0.01)
 ```
 
 To recap, the general process with PyTorch:
-  - Make forward pass through the network
-  - Calculate loss with the network output
-  - Calculate gradients by using <code>loss.backward()</code> to perform backpropagation
-  - Update weights using optimizer
+    * Make forward pass through the network
+    * Calculate loss with the network output
+    * Calculate gradients by using <code>loss.backward()</code> to perform backpropagation
+    * Update weights using optimizer
 {: .notice--info}
 
 **Important**
@@ -187,21 +187,18 @@ It's important to note that before we can update our weights, we need to use <co
 
 **Overall Workflow Recap (for only one training step)**
 ```python
-# Extract images
-images, labels = next(iter(trainloader))
+images, labels = next(iter(trainloader)) # Extract images
 
-# Clear gradients
-optimizer.zero_grad()
+optimizer.zero_grad() # Clear gradients
 
-# Forward pass
-output = model.forward(images)
+output = model.forward(images) # Forward pass
 
-# Calculate loss
-loss = criterion(output, labels)
+loss = criterion(output, labels) # Calculate loss
 
-# Backward pass
-loss.backward()
+loss.backward() # Backward pass
 
-# Optimize weights
-optimizer.step()
+optimizer.step() # Optimize weights
 ```
+
+## Conclusion
+So we have a working MNIST digits classifier! To conclude, we have learnt the workflow of building a simple classifier using PyTorch and the basic components that can provide additional "power" for us to efficiently construct the network. Next, we will build another simple classifier to classify the clothing images. [Fashion-MNIST dataset](https://github.com/zalandoresearch/fashion-mnist) is more complex than MNIST so it can kind of like resemble the actual real-world problem.
