@@ -58,3 +58,8 @@ Weights initialization:
 2. In particular, parameters are set to random values uniformly drawn from [-a, a], where $$a = \sqrt{6/(d_{in}-d_{out})}$$. $$d_(in)$$ and $$d_(out)$$ are the input and output channel sizes, respectively.
 3. All biases are initilized to 0
 4. For batch normalization layers, $$\gamma$$ vectors are initilized to 1 and $$\beta$$ vectors to 0.
+
+Optimizer:
+1. Nesterov Accelerated Gradient (NAG) descent is used for training.
+2. Each model trained for 120 epoch on 8 Nvidia V100 GPUs, batch_size set to 256.
+3. Learning rate is initialized to 0.1 and divided by 10 at the 30th, 60th, and 90th epochs.
