@@ -10,7 +10,7 @@ classes: wide
 mathjax: "true"
 excerpt: "This paper examined various refinements that have impacts on the final model accuracy"
 header:
-  teaser: "/images/readings/bag-of-tricks-for-image-classification/resnet.jpg"
+  teaser: "/images/fashion_mnist_with_pytorch/fashion-mnist.png"
   overlay_image: "/images/readings/bag-of-tricks-for-image-classification/resnet.jpg"
   overlay_filter: 0.7
   caption: "Photo credit: [**Bag of Tricks for Image Classification with Convolutional Neural Networks**](https://arxiv.org/abs/1812.01187)"
@@ -55,4 +55,6 @@ During validation:
 
 Weights initialization:
 1. Both convolutional and fully-connected layers are initialized with Xavier algorithm
-2. In particular, parameters are set to random values uniformly drawn from [-a, a], where $$a = \sqrt{6/(d_(in)-d_(out))}$$. $$d_(in)$$ and $$d_(out)$$ are the input and output channel sizes, respectively.
+2. In particular, parameters are set to random values uniformly drawn from [-a, a], where $$a = \sqrt{6/(d_{in}-d_{out})}$$. $$d_(in)$$ and $$d_(out)$$ are the input and output channel sizes, respectively.
+3. All biases are initilized to 0
+4. For batch normalization layers, $$\gamma$$ vectors are initilized to 1 and $$\beta$$ vectors to 0.
