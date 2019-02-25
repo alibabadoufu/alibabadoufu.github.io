@@ -72,4 +72,14 @@ The experiments were done with three CNNs: ResNet-50, Inception-V3 (images are r
 
 {% include figure image_path="/images/readings/validation-accuracy.PNG" alt="Validation accuracy of reference implementations and our baseline." caption="Validation accuracy of reference implementations and our baseline" %}
 
-As can be
+As shown above, only ResNet-50 shows better results than the reference's one while the other models perform slightly poorer than its reference counterpart.
+
+## Efficient Training
+During the early stage of GPU development, developers will need to make a decision between accuracy and speed. However, due to recent advancement in high-performance computing, it is now more efficient to use lower numerical precision (To understand the benefit of lower numerical precision, check out this [post](https://software.intel.com/en-us/articles/lower-numerical-precision-deep-learning-inference-and-training)) and larger batch sizes during training.
+
+However, there are some reports([here](https://stats.stackexchange.com/questions/164876/tradeoff-batch-size-vs-number-of-iterations-to-train-a-neural-network) and [here](https://www.quora.com/In-deep-learning-why-dont-we-use-the-whole-training-set-to-compute-the-gradient), the second link includes answer from Ian Goodfellow) that critisized on training with larger batch size. So, what techniques we can use to make full advantage of these two constraints without degrading our model accuracy?
+
+### Large-batch Training
+The advantages of using large-batch training is two-fold: increase parallelism and decrease communication costs. However, every coin has two sides. The cost of using it is slower training as convergence rate tends to slow down when the batch size increases. In the similar context, if we fix the number of epochs for two different models: one trains with large batch size and the other trains with single batch size at a single time, we would expect the former to end up with degraded validation accuracy as compared to the latter. Below we will discuss 4 heuristics to solve the problem.
+
+1. **Linear scaling learning rate**.  
