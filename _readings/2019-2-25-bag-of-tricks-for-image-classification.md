@@ -55,7 +55,7 @@ During validation:
 
 Weights initialization:
 1. Both convolutional and fully-connected layers are initialized with Xavier algorithm
-2. In particular, parameters are set to random values uniformly drawn from [-a, a], where $$a = \sqrt{6/(d_{in}-d_{out})}$$. $$d_(in)$$ and $$d_(out)$$ are the input and output channel sizes, respectively.
+2. In particular, parameters are set to random values uniformly drawn from [-a, a], where $$a = \sqrt{6/(d_{in}-d_{out})}$$. $$d_{in}$$ and $$d_{out}$$ are the input and output channel sizes, respectively.
 3. All biases are initilized to 0
 4. For batch normalization layers, $$\gamma$$ vectors are initilized to 1 and $$\beta$$ vectors to 0.
 
@@ -65,6 +65,5 @@ Optimizer:
 3. Learning rate is initialized to 0.1 and divided by 10 at the 30th, 60th, and 90th epochs.
 
 **What is Nesterov Accelerated Gradient (NAG) Descent?**
-It is important to understand NAG Descent here before we discuss about other improvements on the model. Momentum based Gradient Descent solves the problems of Vanilla Gradient Descent in such a way that it doesn't get stuck in the gentle region. It aggregates the previous updates to accelerate the learning with larger update step.
-However, it oscillates in the valley region before going down to its lowest point. This leads to more redundant iterations in order to get the optimum point for the training.
+It is important to understand NAG Descent here before we discuss about other improvements on the model. Momentum based Gradient Descent solves the problems of Vanilla Gradient Descent in such a way that it doesn't get stuck in the gentle region. The way it does is aggregate previous updates to learn the weights with a larger step. However, it oscillates in the valley region before going down to its lowest point. This leads to more redundant iterations in order to get the optimum point for the training.
 {: .notice--info}
