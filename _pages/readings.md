@@ -2,6 +2,20 @@
 layout: splash
 permalink: /readings/
 title: "Paper Review"
-breadcrumbs: false
+classes:
+  - dark-theme
 comments: false
 ---
+
+{% assign readingsByYear = site.readings | group_by_exp: 'reading', 'reading.date | date: "%Y"' %}
+{% for year in readingsByYear %}
+  <section id="{{ year.name }}" class="taxonomy__section">
+    <h2 class="archive__subtitle">{{ year.name }}</h2>
+    <div class="entries-{{ page.entries_layout | default: 'list' }}">
+      {% for reading in year.items %}
+        {% include archive-single.html type=page.entries_layout %}
+      {% endfor %}
+    </div>
+    <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+  </section>
+{% endfor %}
