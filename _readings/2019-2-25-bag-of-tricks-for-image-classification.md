@@ -63,3 +63,8 @@ Optimizer:
 1. Nesterov Accelerated Gradient (NAG) descent is used for training.
 2. Each model trained for 120 epoch on 8 Nvidia V100 GPUs, batch_size set to 256.
 3. Learning rate is initialized to 0.1 and divided by 10 at the 30th, 60th, and 90th epochs.
+
+**What is Nesterov Accelerated Gradient (NAG) Descent?**
+It is important to understand NAG Descent here before we discuss about other improvements on the model. Momentum based Gradient Descent solves the problems of Vanilla Gradient Descent in such a way that it doesn't get stuck in the gentle region. It aggregates the previous updates to accelerate the learning with larger update step.
+However, it oscillates in the valley region before going down to its lowest point. This leads to more redundant iterations in order to get the optimum point for the training.
+{: .notice--info}
