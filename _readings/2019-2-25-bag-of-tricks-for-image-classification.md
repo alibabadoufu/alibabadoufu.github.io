@@ -10,8 +10,8 @@ classes: wide
 mathjax: "true"
 excerpt: "This paper examined various refinements that have impacts on the final model accuracy"
 header:
-  teaser: "/images/readings/resnet.jpg"
-  overlay_image: "/images/readings/resnet.jpg"
+  teaser: "/images/readings/resnet.png"
+  overlay_image: "/images/readings/resnet.png"
   overlay_filter: 0.6
   caption: "Photo credit: [**Bag of Tricks for Image Classification with Convolutional Neural Networks**](https://arxiv.org/abs/1812.01187)"
 ---
@@ -65,5 +65,5 @@ Optimizer:
 3. Learning rate is initialized to 0.1 and divided by 10 at the 30th, 60th, and 90th epochs.
 
 **What is Nesterov Accelerated Gradient (NAG) Descent?**
-It is important to understand NAG Descent here before we discuss about other improvements on the model. Momentum based Gradient Descent solves the problems of Vanilla Gradient Descent in such a way that it doesn't get stuck in the gentle region. The way it does is aggregate previous updates to learn the weights with a larger step. However, it oscillates in the valley region before going down to its lowest point. This leads to more redundant iterations in order to get the optimum point for the training.
+It is important to understand NAG Descent here before we discuss about other improvements on the model. Momentum based Gradient Descent solves the problems of Vanilla Gradient Descent in such a way that it doesn't get stuck in the gentle region. The way it does is aggregate previous updates to learn the weights with a larger step. However, it tends to oscillate in the valley region before going down to the lowest point. This leads to more redundant iterations in order to get the optimum point for the training. To understand more, I will cover this in another blog post. Stay tuned!
 {: .notice--info}
