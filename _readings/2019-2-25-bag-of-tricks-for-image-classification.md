@@ -70,7 +70,7 @@ The preprocessing pipelines between training and validation are different
 
 The experiments were done with three CNNs: ResNet-50, Inception-V3 (images are resized into 299x299), and MobileNet. They tested them on ISLVRC2012 dataset, which contains 1.3 million images for training and 1000 classes.
 
-{% include figure image_path="/images/readings/validation-accuracy.PNG" alt="Validation accuracy of reference implementations and our baseline." caption="Validation accuracy of reference implementations and our baseline" %}
+{% include figure image_path="/images/readings/validation-accuracy.PNG" alt="Validation accuracy of reference implementations and the author's model baseline." caption="Validation accuracy of reference implementations and the author's model baseline" %}
 
 As shown above, only ResNet-50 shows better results than the reference's one while the other models perform slightly poorer than its reference counterpart.
 
@@ -82,11 +82,36 @@ However, there are some reports([here](https://stats.stackexchange.com/questions
 ### Large-batch Training
 The advantages of using large-batch training is two-fold: increase parallelism and decrease communication costs. However, every coin has two sides. The cost of using it is slower training as convergence rate tends to slow down when the batch size increases. In the similar context, if we fix the number of epochs for two different models: one trains with large batch size and the other trains with single batch size at a single time, we would expect the former to end up with degraded validation accuracy as compared to the latter. Below we will discuss 4 heuristics to solve the problem.
 
-#### Linear scaling learning rate
+- **Linear scaling learning rate**
 Increasing the batch size can reduce its variance (or noise in the gradient). [Goyal et al.](https://arxiv.org/abs/1706.02677) pointed out that linearly increasing the learning rate with larger batch size works empirically for ResNet-50 training. The author suggests that we can choose the initial learning rate by calculating this equation $$0.1 \times \frac{b}{256}$$ if we follow [He et al.](https://arxiv.org/abs/1512.03385) to choose 0.1 as initial learning rate.
 
-#### Learning rate warmup
+- **Learning rate warmup**
 Using large learning rate may result in numerical instability at the start of the training. [Goyal et al.](https://arxiv.org/abs/1706.02677) suggests a gradual warmup strategy that increases the learning rate from 0 to the initial learning rate linearly. In other words, we can set the learning rate to $$frac{i\eta}{m}$$, where n is the initial learning rate at batch $$i$$, $$1 \leq i \leq m$$.
 
-#### Zero \gamma
-The output of the residual block is equal to $$x + block(x)$$. Inside of the block is convolutional layers. For some variant of residual block, the last layer could be a batch normalizaton (BN) layer. The last operation of BN layer is scale transformation $$\gammahat{x}+\beta$$
+- **Zero** \gamma
+The output of the residual block is equal to $$x + block(x)$$. Inside of the block is convolutional layers. For some variant of residual block, the last layer could be a batch normalizaton (BN) layer. The last operation of BN layer is scale transformation $$\gamma hat{x}+\beta$$ and both $$\gamma$$ and $$\beta$$ are learnable parameters whose elements are initialized to 1s and 0s, respectively. The author suggests that we should set $$\gamma$$ to be zero so that the network has less parameters to learn and easier to train.
+
+- **No bias decay**
+Weight decay is often applied to both weights and bias (equivalent to applying L2 regularization). However, [Jia et al.](https://arxiv.org/abs/1807.11205) suggests that we should apply weight decay to the weights in convolution and fully-connected layers and left biases and $$\gamma$$ and $$\beta$$ in BN layers unregularized.
+
+### Low-precision training
+{% include figure image_path="/images/readings/comparison-between-FP16-and-FP32.PNG" alt="Comparison of the training time and validation accuracy for ResNet-50 between the baseline (BS=256 with FP32) and a more hardware efficient setting (BS=1024 with FP16)." caption="Comparison of the training time and validation accuracy for ResNet-50 between the baseline (BS=256 with FP32) and a more hardware efficient setting (BS=1024 with FP16)" %}
+The training speed is accelerated by 2 or 3 times after switching from FP32 to FP16 on Nvidia V100. See figure above. However, the best practise is to store all parameters and activations in FP16 and use FP16 to computer the gradients. At the same time, all parameters have an copy in FP32 for parameter updating.
+
+## Model Tweaks
+Minor adjustment to the network architecture barely changes the computational complexity. However, it may get you non-negligible effect on the model accuracy. In the following sections, we will use ResNet as an example to discuss about a few tweaks to make a better model.
+
+{% include figure image_path="/images/readings/original-resnet.png" alt="Original ResNet." caption="Original ResNet introduced in [He et al.]("https://arxiv.org/abs/1512.03385")." %}
+
+The figure above illustrates the architecture of ResNet-50. The author points out a few tweaks that focuses on the input stem and down-sampling block.
+
+{% include figure image_path="/images/readings/resnet.png" alt="ResNet Tweaks." caption="ResNet Tweaks." %}
+
+1. ResNet-B modifies the first two Conv layers in Path A. The motivation is to solve the loss of information due to the stride of 2 in the first Conv layer.
+2. ResNet-C replaces the 7x7 convolution layers as its inherently much more expensive that 3x3 convolution layers in term of the computational cost. This concept originates from Inception-V2.
+3. ResNet-D removes the stride of 2 in the Conv layer appeared in Path B. At the same time, it introduces a 2x2 average pooling layer with a stride of 2 and it works well empirically.
+
+## Training Refinements
+There are four training refinements discussed here:
+
+**Cosine Learning Rate Decay**
