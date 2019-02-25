@@ -40,7 +40,7 @@ Author argued that functions and hyper-parameters in the baseline algo can be im
 ### Baseline training procedure
 The preprocessing pipelines between training and validation are different
 
-During training:
+**During training**:
 1. randomly sample an image and decode it into 32-bit raw values in [0,255]
 2. crop a rectangular region whose aspect ratio is randomly sampled in [3/4,4/3] and area randomly sampled in [8%, 100%], then resize the cropped image into 224x224
 3. Flip horizontally with 0.5 probability
@@ -48,22 +48,30 @@ During training:
 5. Add PCA noise with a coefficient sampled from a normal distribution $$N$$(0,0.1)
 6. Normalize RGB channels by subtracting the pixels with 123.68, 116.779, 103.939 and dividing by 58.393, 57.12, 57.375
 
-During validation:
+**During validation**:
 1. Resize each image's shorted edge to 256 pixels while keeping its aspect ratio.
 2. Crop a 224x224 region in the center
 3. Normalize RGB channels the same way as step.no 6 for training data
 
-Weights initialization:
+**Weights initialization**:
 1. Both convolutional and fully-connected layers are initialized with Xavier algorithm
 2. In particular, parameters are set to random values uniformly drawn from [-a, a], where $$a = \sqrt{6/(d_{in}-d_{out})}$$. $$d_{in}$$ and $$d_{out}$$ are the input and output channel sizes, respectively.
 3. All biases are initilized to 0
 4. For batch normalization layers, $$\gamma$$ vectors are initilized to 1 and $$\beta$$ vectors to 0.
 
-Optimizer:
+**Optimizer**:
 1. Nesterov Accelerated Gradient (NAG) descent is used for training.
 2. Each model trained for 120 epoch on 8 Nvidia V100 GPUs, batch_size set to 256.
 3. Learning rate is initialized to 0.1 and divided by 10 at the 30th, 60th, and 90th epochs.
 
 **What is Nesterov Accelerated Gradient (NAG) Descent?**
-It is important to understand NAG Descent here before we discuss about other improvements on the model. Momentum based Gradient Descent solves the problems of Vanilla Gradient Descent in such a way that it doesn't get stuck in the gentle region. The way it does is aggregate previous updates to learn the weights with a larger step. <br>However, it tends to oscillate in the valley region before going down to the lowest point. This leads to more redundant iterations in order to get the optimum point for the training. To understand more, I will cover this in another blog post. Stay tuned!
+It is important to understand NAG Descent here before we discuss about other improvements on the model. Momentum based Gradient Descent solves the problems of Vanilla Gradient Descent in such a way that it doesn't get stuck in the gentle region. The way it does is aggregate previous updates to learn the weights with a larger step. <br>However, it tends to oscillate in the valley region before going down to the trough. This leads to more redundant iterations in order to get the optimum point for the training. To understand more, I will cover this in another blog post. Stay tuned!
 {: .notice--info}
+
+The experiments were done with three CNNs: ResNet-50, Inception-V3 (images are resized into 299x299), and MobileNet. They tested them on ISLVRC2012 dataset, which contains 1.3 million images for training and 1000 classes.
+
+<figure>
+    <a href="/images/readings/validation-accuracy.PNG"><img src="/images/readings/validation-accuracy.PNG"></a>
+    <figcaption>Validation accuracy of reference implementations
+and our baseline.</figcaption>
+</figure>
