@@ -10,9 +10,9 @@ classes: wide
 mathjax: "true"
 excerpt: "This paper examined various refinements that have impacts on the final model accuracy"
 header:
-  teaser: "/images/readings/bag-of-tricks-for-image-classification/resnet.jpg"
-  overlay_image: "/images/fashion_mnist_with_pytorch/fashion-mnist.png"
-  overlay_filter: 0.7
+  teaser: "/images/readings/resnet.jpg"
+  overlay_image: "/images/readings/resnet.jpg"
+  overlay_filter: 0.6
   caption: "Photo credit: [**Bag of Tricks for Image Classification with Convolutional Neural Networks**](https://arxiv.org/abs/1812.01187)"
 ---
 
