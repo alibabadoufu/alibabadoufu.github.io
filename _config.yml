@@ -104,7 +104,6 @@ analytics:
     tracking_id          : "UA-135038928-1"
     anonymize_ip         : # true, false (default)
 
-
 # Site Author
 author:
   name             : "Jasper Lai Woen Yon"

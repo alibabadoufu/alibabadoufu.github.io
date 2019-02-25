@@ -82,4 +82,4 @@ However, there are some reports([here](https://stats.stackexchange.com/questions
 ### Large-batch Training
 The advantages of using large-batch training is two-fold: increase parallelism and decrease communication costs. However, every coin has two sides. The cost of using it is slower training as convergence rate tends to slow down when the batch size increases. In the similar context, if we fix the number of epochs for two different models: one trains with large batch size and the other trains with single batch size at a single time, we would expect the former to end up with degraded validation accuracy as compared to the latter. Below we will discuss 4 heuristics to solve the problem.
 
-1. **Linear scaling learning rate**.  
+1. **Linear scaling learning rate**. Increasing the batch size can reduce its variance (or noise in the gradient). [Goyal et al.](https://arxiv.org/abs/1706.02677) pointed out that linearly increasing the learning rate with larger batch size works empirically for ResNet-50 training. The author suggests that we can choose the initial learning rate by calculating this equation $$0.1 \times \frac{b}{256}$$
