@@ -13,3 +13,5 @@ header:
   overlay_image: "/images/fashion_mnist_with_pytorch/fashion-mnist.png"
   overlay_filter: 0.8
 ---
+
+I will update this post very soon.
