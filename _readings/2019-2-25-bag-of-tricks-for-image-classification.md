@@ -65,7 +65,7 @@ The preprocessing pipelines between training and validation are different
 3. Learning rate is initialized to 0.1 and divided by 10 at the 30th, 60th, and 90th epochs.
 
 **What is Nesterov Accelerated Gradient (NAG) Descent?**
-It is important to understand NAG Descent here before we discuss about other improvements on the model. Momentum based Gradient Descent solves the problems of Vanilla Gradient Descent in such a way that it doesn't get stuck in the gentle region. The way it does is aggregate previous updates to learn the weights with a larger step. <br>However, it tends to oscillate in the valley region before going down to the trough. This leads to more redundant iterations in order to get the optimum point for the training. To understand more, I will cover this in another blog post. Stay tuned!
+<br>It is important to understand NAG Descent here before we discuss about other improvements on the model. Momentum based Gradient Descent solves the problems of Vanilla Gradient Descent in such a way that it doesn't get stuck in the gentle region. The way it does is aggregate previous updates to learn the weights with a larger step. <br>However, it tends to oscillate in the valley region before going down to the trough. This leads to more redundant iterations in order to get the optimum point for the training. To understand more, I will cover this in another blog post. Stay tuned!
 {: .notice--info}
 
 The experiments were done with three CNNs: ResNet-50, Inception-V3 (images are resized into 299x299), and MobileNet. They tested them on ISLVRC2012 dataset, which contains 1.3 million images for training and 1000 classes.
