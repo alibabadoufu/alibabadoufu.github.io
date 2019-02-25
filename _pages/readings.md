@@ -1,21 +1,23 @@
 ---
-layout: splash
+layout: archive
 permalink: /readings/
-title: "Paper Review"
-classes:
-  - dark-theme
-comments: false
+title: readings
+author_profile: false
+sidebar:
+  - image: "/images/about.jpg"
+description: "Music makes i"
+toc: true
+og_image: "/images/about.jpg"
 ---
 
-{% assign readingsByYear = site.readings | group_by_exp: 'reading', 'reading.date | date: "%Y"' %}
-{% for year in readingsByYear %}
-  <section id="{{ year.name }}" class="taxonomy__section">
-    <h2 class="archive__subtitle">{{ year.name }}</h2>
-    <div class="entries-{{ page.entries_layout | default: 'list' }}">
-      {% for reading in year.items %}
-        {% include archive-single.html type=page.entries_layout %}
-      {% endfor %}
-    </div>
-    <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
-  </section>
-{% endfor %}
+Music makes its best impression when it is shared by a friend over a story. Music is a medium for communicating and stimulating emotions, for
+
+## Latest stories
+
+<div class="grid__wrapper">
+  {% assign collection = 'readings' %}
+  {% assign posts = site[collection] | reverse %}
+  {% for post in posts %}
+    {% include archive-single.html type="grid" %}
+  {% endfor %}
+</div>

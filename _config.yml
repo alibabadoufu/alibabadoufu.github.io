@@ -284,6 +284,10 @@ compress_html:
   ignore:
     envs: development
 
+collections:
+  readings:
+    output: true
+    permalink: /:categories/:title/
 
 # Defaults
 defaults:
@@ -299,14 +303,15 @@ defaults:
       share: true
       related: true
 
+  # _readings
   - scope:
       path: ""
       type: readings
     values:
-      layout: splash
+      layout: article
       author_profile: true
       read_time: true
-      comments: # true
+      comments: true
       share: true
       related: true
 
