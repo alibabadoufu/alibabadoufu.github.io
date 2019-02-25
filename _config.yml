@@ -299,6 +299,17 @@ defaults:
       share: true
       related: true
 
+  - scope:
+      path: ""
+      type: readings
+    values:
+      layout: splash
+      author_profile: true
+      read_time: true
+      comments: # true
+      share: true
+      related: true
+
   # _pages
   - scope:
       path: ""
