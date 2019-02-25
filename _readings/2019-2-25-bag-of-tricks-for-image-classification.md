@@ -70,8 +70,6 @@ The preprocessing pipelines between training and validation are different
 
 The experiments were done with three CNNs: ResNet-50, Inception-V3 (images are resized into 299x299), and MobileNet. They tested them on ISLVRC2012 dataset, which contains 1.3 million images for training and 1000 classes.
 
-<figure>
-    <a href="/images/readings/validation-accuracy.PNG"><img src="/images/readings/validation-accuracy.PNG"></a>
-    <figcaption>Validation accuracy of reference implementations
-and our baseline.</figcaption>
-</figure>
+{% include figure image_path="/images/readings/validation-accuracy.PNG" alt="Validation accuracy of reference implementations and our baseline." caption="Validation accuracy of reference implementations and our baseline" %}
+
+As can be

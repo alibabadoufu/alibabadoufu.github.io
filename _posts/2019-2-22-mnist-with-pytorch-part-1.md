@@ -176,7 +176,7 @@ To update the weights with the gradients, we will need an optimizer. PyTorch pro
 optimizer = optim.SGD(model.parameters(), lr=0.01)
 ```
 
-To recap, the general process with PyTorch:
+**To recap, the general process with PyTorch**:
 + Make forward pass through the network
 + Calculate loss with the network output
 + Calculate gradients by using <code>loss.backward()</code> to perform backpropagation
