@@ -1,16 +1,13 @@
 ---
 layout: archive
 permalink: /readings/
-title: readings
-author_profile: false
-sidebar:
-  - image: "/images/about.jpg"
-description: "Music makes i"
+title: Paper Review
+author_profile: true
+description: "As a PhD candidate, I spend majority of my time on reading papers. This site will be used to document and summarize the papers that I have read."
 toc: true
-og_image: "/images/about.jpg"
 ---
 
-Music makes its best impression when it is shared by a friend over a story. Music is a medium for communicating and stimulating emotions, for
+Albert Einstein — 'You do not really understand something unless you can explain it to your grandmother.'
 
 ## Latest stories
 
