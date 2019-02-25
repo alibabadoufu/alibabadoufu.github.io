@@ -55,4 +55,4 @@ During validation:
 
 Weights initialization:
 1. Both convolutional and fully-connected layers are initialized with Xavier algorithm
-2. In particular, parameters are set to random values uniformly drawn from [-a, a], where $$a = sqrt{6/(d_in-d_out)}$$
+2. In particular, parameters are set to random values uniformly drawn from [-a, a], where $$a = \sqrt{6/(d_(in)-d_(out))}$$. $$d_(in)$$ and $$d_(out)$$ are the input and output channel sizes, respectively.
