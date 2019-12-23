@@ -13,7 +13,6 @@ header:
   teaser: "/images/readings/resnet.png"
   overlay_image: "/images/readings/resnet.png"
   overlay_filter: 0.6
-  caption: ""
 ---
 
 ## What is Scene graph ?
@@ -29,7 +28,7 @@ We shall dedicate a more detailed introduction to scene graph in a separate post
 ## Problem with existing scene graph
 One of the most obvious pain points in the existing training dataset is the skewed predicate distribution. 
 
-![Visual relationships have a long tail (left) of infrequent relationships. [Extracted from [here](https://arxiv.org/pdf/1904.11622.pdf)]]({{site.baseurl}/images/readings/2019-12-23-Learning-Predicates-as-Functions-to-Enable-Few-shot-Scene-Graph-Prediction/statistics_of_predicate_distribution.JPG "Visual relationships have a long tail (left) of infrequent relationships")
+<!-- ![Visual relationships have a long tail (left) of infrequent relationships. [Extracted from [here](https://arxiv.org/pdf/1904.11622.pdf)]]({{site.baseurl}/images/readings/2019-12-23-Learning-Predicates-as-Functions-to-Enable-Few-shot-Scene-Graph-Prediction/statistics_of_predicate_distribution.JPG "Visual relationships have a long tail (left) of infrequent relationships") -->
 
 ## Training procedure
 The template that the network uses is mini-batch stochastic gradient descent.
