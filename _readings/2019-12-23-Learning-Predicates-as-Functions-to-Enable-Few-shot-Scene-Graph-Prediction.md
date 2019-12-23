@@ -1,37 +1,35 @@
 ---
 layout: single
-title: "[Draft] Bag of Tricks for Image Classification with Convolutional Neural Networks"
-date: 2019-2-25
-tags: [deep learning, paper, amazon, convolutional neural network, tricks]
-excerpt: "Deep Learning, Paper Reading, Convolutional Neural Network"
+title: "[Draft] Learning Predicates as Functions to Enable Few-shot Scene Graph Prediction"
+date: 2019-12-23
+tags: [scene graph]
+excerpt: "Deep Learning, Paper Reading"
 comments: true
 toc: true
 classes: wide
 mathjax: "true"
-excerpt: "This paper examined various refinements that have impacts on the final model accuracy"
+excerpt: "Can we learn to encode a rare relationship triplet using only a few labeled example?"
 header:
   teaser: "/images/readings/resnet.png"
   overlay_image: "/images/readings/resnet.png"
   overlay_filter: 0.6
-  caption: "Photo credit: [**Bag of Tricks for Image Classification with Convolutional Neural Networks**](https://arxiv.org/abs/1812.01187)"
+  caption: ""
 ---
 
-Refinements play an important role in deep learning workflow. These includes changes in loss functions, data preprocessing and optimization methods. These refinements improve the model accuracy by a few percentage (which is quite significant if you were to compare the state-of-the-art models in a specific category, for example image captioning) but they are typically not covered in details in the papers. In this paper, we can learn different tricks that could be applied to our own model and their impacts.
+## What is Scene graph ?
+In recent years, we have seen tremendous success on image classification task. Thanks to the technology advancement in deep neural network, machine is capable to classify more than 1000 types of objects in the scene. For example, given a photo that consists either dog or cat, a deep neural network can learn how to extract distinct features that discriminate the two animals in the picture. Things get complicated especially when objects with multiple of different classes appear in the same scene. This, however, can be well taken care of by state-of-the-art object detection models such as [Faster RCNN](https://arxiv.org/pdf/1506.01497.pdf) and [SSD](https://arxiv.org/pdf/1512.02325.pdf). Although detected objects appear to be very useful in some real world applications, for example crowd estimation and self-driving car, it still lacks the ability to understand the context/information of the scene. 
 
-In the following sections, I will break down the discussion into different sections. These sections will either include discussion on individual chapter or a group of chapters.
+Scene graph, which is a structured representation of the visual scene, is designed to encode relationship between any pair of objects in an image. The model receives an image as an input and outputs a bunch of relationship triplets, denoted as <em><subject, predicate, object></em>. Predicate is equivalent to any relationship class, for example <em>hold</em>, <em>above</em>, and <em>cook</em>. Subject and object are one of the object classes appeared in the training set and we usually use 3 distinct features to represent them.
+1. Visual features  : high dimensional vectors in the visual space
+2. Spatial features : the bounding box coordinates
+3. Semantic features: object class (think of it as GloVE vectors)
 
-## Introduction
-Examine collection of training and model architecture refinements
-- minor tricks, for example: modifying stride
-- adjusting learning rate schedule
-Together they make big difference
+We shall dedicate a more detailed introduction to scene graph in a separate post. Up to this stage, the above information should be sufficient to understand the rest of the paper.
 
-These tricks will be evaluated on multiple network and impact are reported to the final model accuracy
+## Problem with existing scene graph
+One of the most obvious pain points in the existing training dataset is the skewed predicate distribution. 
 
-Advantage of their Tricks
-- Can be generalize to other networks (inception and mobilenet) and other datasets (Place365)
-- Bring better transfer learning performance in other applications such as object detection and semantic segmentation
-
+![Visual relationships have a long tail (left) of infrequent relationships. [Extracted from [here](https://arxiv.org/pdf/1904.11622.pdf)]]({{site.baseurl}/images/readings/2019-12-23-Learning-Predicates-as-Functions-to-Enable-Few-shot-Scene-Graph-Prediction/statistics_of_predicate_distribution.JPG "Visual relationships have a long tail (left) of infrequent relationships")
 
 ## Training procedure
 The template that the network uses is mini-batch stochastic gradient descent.
@@ -51,7 +49,7 @@ The preprocessing pipelines between training and validation are different
 **During validation**:
 1. Resize each image's shorted edge to 256 pixels while keeping its aspect ratio.
 2. Crop a 224x224 region in the center
-3. Normalize RGB channels the same way as step.no 6 for training data
+3. Normalize RGB channels the same way as step no. 6 for training data
 
 **Weights initialization**:
 1. Both convolutional and fully-connected layers are initialized with Xavier algorithm
