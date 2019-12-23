@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "[Draft] Learning Predicates as Functions to Enable Few-shot Scene Graph Prediction"
-date: 2019-12-23
+date: 2019-12-2
 tags: [scene graph]
 excerpt: "Deep Learning, Paper Reading"
 comments: true
